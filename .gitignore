@@ -1,0 +1,55 @@
+# .NET
+bin/
+obj/
+.vs/
+.vscode/
+*.csproj.user
+*.sln.user
+*.DotSettings.user
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node/npm
+node_modules/
+dist/
+.nuxt/
+.cache/
+.vuepress/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependencies
+package-lock.json
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+*.sublime-workspace
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.iml
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Build outputs
+dist/
+build/
+out/
+coverage/
