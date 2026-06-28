@@ -1,21 +1,22 @@
 <template>
-  <div>
-    <nav class="flex justify-between items-center px-8 py-4 glass mx-6 mt-6">
-      
-      <h1 class="text-xl font-bold text-pink-500">
-        Larrayne 💗.dev
-      </h1>
-
-      <div class="flex gap-6 text-gray-700">
-        <router-link to="/" class="hover:text-pink-500 transition">Home</router-link>
-        <router-link to="/projects" class="hover:text-pink-500 transition">Projects</router-link>
-        <router-link to="/about" class="hover:text-pink-500 transition">Products</router-link>
-        <router-link to="/about" class="hover:text-pink-500 transition">About</router-link>
-        <router-link to="/contact" class="hover:text-pink-500 transition">Contact</router-link>
+  <div class="min-h-screen">
+    <nav class="navbar mx-6 mt-6 rounded-3xl">
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-white">Larrayne 💗.dev</h1>
+        <p class="text-sm text-pink-200/80">Full-stack portfolio with personality</p>
       </div>
 
+      <div class="flex flex-wrap gap-4 items-center">
+        <router-link to="/" class="btn-outline px-4 py-2">Home</router-link>
+        <router-link to="/projects" class="btn-outline px-4 py-2">Projects</router-link>
+        <router-link to="/products" class="btn-outline px-4 py-2">Products</router-link>
+        <router-link to="/about" class="btn-outline px-4 py-2">About</router-link>
+        <router-link to="/contact" class="btn-outline px-4 py-2">Contact</router-link>
+      </div>
     </nav>
 
-    <router-view />
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
