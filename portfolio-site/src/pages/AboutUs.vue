@@ -1,5 +1,5 @@
 <script setup>
-const skills = ['Vue', 'C#', '.NET', 'Tailwind', 'Azure', 'Testing', 'DevOps']
+const skills = ['Vue', 'C#', '.NET', 'Tailwind', 'Testing', 'Agentic AI']
 const strengths = [
   { label: 'Design-led development', value: 'Intuitive layouts and polished visual language' },
   { label: 'Reliable engineering', value: 'Component-driven code with reusable patterns' },
@@ -19,7 +19,7 @@ const strengths = [
               My work is motivated by beautiful interactions, approachable experiences, and code that grows with the product.
             </p>
 
-            <div class="mt-10 grid gap-4 sm:grid-cols-2">
+            <div class="mt-10 flex flex-wrap gap-3">
               <div v-for="skill in skills" :key="skill" class="skill-pill">{{ skill }}</div>
             </div>
           </div>

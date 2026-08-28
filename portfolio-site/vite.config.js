@@ -5,10 +5,11 @@ import tailwindcss from '@tailwindcss/postcss'
 import autoprefixer from 'autoprefixer'
 
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '/',
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(import.meta.dirname, './src'),
     },
   },
   css: {

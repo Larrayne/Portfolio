@@ -67,7 +67,8 @@ body {
   color: white;
 }
 
-.nav-link.active {
+.nav-link.active,
+.router-link-exact-active {
   color: white;
   text-decoration: underline 2px rgba(236, 72, 153, 0.7);
 }
@@ -382,6 +383,34 @@ body {
 
 .contact-info {
   padding: 2rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.feature-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.875rem;
+  background: rgba(236, 72, 153, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.feature-icon svg {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 @media (max-width: 768px) {

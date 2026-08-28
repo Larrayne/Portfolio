@@ -9,14 +9,17 @@
       <div class="flex flex-wrap gap-4 items-center">
         <router-link to="/" class="btn-outline px-4 py-2">Home</router-link>
         <router-link to="/projects" class="btn-outline px-4 py-2">Projects</router-link>
-        <router-link to="/products" class="btn-outline px-4 py-2">Products</router-link>
         <router-link to="/about" class="btn-outline px-4 py-2">About</router-link>
         <router-link to="/contact" class="btn-outline px-4 py-2">Contact</router-link>
       </div>
     </nav>
 
     <main>
-      <router-view />
+      <RouterView v-slot="{ Component }">
+        <Transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
     </main>
   </div>
 </template>

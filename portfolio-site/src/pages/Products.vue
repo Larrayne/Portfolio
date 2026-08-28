@@ -29,7 +29,7 @@ const products = [
 
       <div class="grid gap-6 mt-10 md:grid-cols-2">
         <div v-for="product in products" :key="product.name" class="glass product-card p-8">
-          <img :src="product.image" alt="{{ product.name }}" class="rounded-3xl w-full object-cover mb-6" />
+          <img :src="product.image" :alt="product.name" class="rounded-3xl w-full object-cover mb-6" />
           <h2 class="text-2xl font-semibold">{{ product.name }}</h2>
           <p class="text-muted mt-3">{{ product.description }}</p>
           <p class="mt-4 text-pink-300 font-semibold text-lg">{{ product.price }}</p>
