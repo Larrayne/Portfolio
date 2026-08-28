@@ -23,8 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Dependencies
-package-lock.json
+# Dependencies — lock files should be committed for apps
+# package-lock.json
 
 # Logs
 logs/
