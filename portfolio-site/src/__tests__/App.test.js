@@ -3,36 +3,49 @@ import { mount } from '@vue/test-utils';
 import App from '../App.vue';
 
 describe('App.vue', () => {
-  it('renders the main App component with navigation', () => {
-    const wrapper = mount(App, {
-      global: {
-        stubs: ['router-link', 'router-view'],
-      },
-    });
-
-    expect(wrapper.find('nav').exists()).toBe(true);
-    expect(wrapper.findAll('router-link-stub').length).toBeGreaterThanOrEqual(1);
-  });
-
-  it('component should have required navigation links', () => {
-    const wrapper = mount(App, {
-      global: {
-        stubs: ['router-link', 'router-view'],
-      },
-    });
-
-    const links = wrapper.findAll('router-link-stub');
-    expect(links).toHaveLength(5);
-    expect(wrapper.find('router-view-stub').exists()).toBe(true);
-  });
-
-  it('should mount without errors', () => {
-    expect(() => {
-      mount(App, {
-        global: {
-          stubs: ['router-link', 'router-view'],
+  const mountApp = () => mount(App, {
+    global: {
+      stubs: {
+        RouterLink: {
+          props: ['to'],
+          emits: ['click'],
+          template: '<a :data-to="to" @click="$emit(\'click\', $event)"><slot /></a>',
         },
-      });
-    }).not.toThrow();
-  });
-});
+        RouterView: {
+          template: '<div data-test="route-view" />',
+        },
+      },
+    },
+  })
+
+  it('renders the four configured navigation links', () => {
+    const wrapper = mountApp()
+
+    expect(wrapper.find('nav[aria-label="Main navigation"]').exists()).toBe(true)
+    const links = wrapper.findAll('nav a')
+    expect(links.map((link) => link.attributes('data-to'))).toEqual([
+      '/',
+      '/projects',
+      '/about',
+      '/contact',
+    ])
+    expect(wrapper.find('[data-test="route-view"]').exists()).toBe(true)
+  })
+
+  it('toggles the mobile navigation and closes it after a link is selected', async () => {
+    const wrapper = mountApp()
+    const toggle = wrapper.get('.nav-toggle')
+    const navigation = wrapper.get('#primary-navigation')
+
+    expect(toggle.attributes('aria-expanded')).toBe('false')
+    expect(navigation.classes()).not.toContain('is-open')
+
+    await toggle.trigger('click')
+    expect(toggle.attributes('aria-expanded')).toBe('true')
+    expect(navigation.classes()).toContain('is-open')
+
+    await wrapper.get('nav a[data-to="/projects"]').trigger('click')
+    expect(toggle.attributes('aria-expanded')).toBe('false')
+    expect(navigation.classes()).not.toContain('is-open')
+  })
+})

@@ -1,100 +1,43 @@
-name: Dependency Updates & Code Quality
+name: Security Scan
 
 on:
   schedule:
-    # Run weekly on Mondays at 9 AM UTC
     - cron: '0 9 * * 1'
   workflow_dispatch:
 
-jobs:
-  update-dependencies:
-    name: Check & Update Dependencies
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-      
-      - name: Check NuGet updates
-        run: dotnet list package --outdated
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-      
-      - name: Check npm updates (frontend)
-        working-directory: portfolio-site
-        run: npm outdated || true
-      
-      - name: Create Pull Request for dependency updates
-        if: failure()
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: 'chore: update dependencies'
-          title: 'chore: check for dependency updates'
-          body: |
-            ## Dependency Updates
-            
-            This PR checks for outdated dependencies in:
-            - NuGet packages (.NET backend)
-            - npm packages (Vue frontend)
-            
-            Please review and test before merging.
-          branch: chore/dependency-updates
-          delete-branch: true
+permissions:
+  contents: read
 
-  security-scan:
-    name: SAST Security Scan
+jobs:
+  dependency-audit:
+    name: Dependency Audit
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      
-      - name: Restore .NET dependencies
-        run: dotnet restore
-      
-      - name: Run .NET security analysis
+
+      - name: Restore and build .NET tests
         run: |
-          dotnet build -c Release --no-restore /p:TreatWarningsAsErrors=true || true
-      
+          dotnet restore Portfolio.Tests/Portfolio.Tests.csproj
+          dotnet build Portfolio.Tests/Portfolio.Tests.csproj -c Release --no-restore /p:TreatWarningsAsErrors=true
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
-          cache: 'npm'
-          cache-dependency-path: 'portfolio-site/package-lock.json'
-      
+          node-version: '22.x'
+          cache: npm
+          cache-dependency-path: portfolio-site/package-lock.json
+
       - name: Install frontend dependencies
         working-directory: portfolio-site
         run: npm ci
-      
-      - name: Run npm audit for frontend
+
+      - name: Audit frontend dependencies
         working-directory: portfolio-site
-        run: npm audit || true
-      
-      - name: Run OWASP Dependency-Check
-        uses: dependency-check/Dependency-Check_Action@main
-        with:
-          path: '.'
-          format: 'JSON'
-          args: >
-            --enable-retired
-            --enable-experimental
-      
-      - name: Upload OWASP results
-        uses: actions/upload-artifact@v4
-        with:
-          name: dependency-check-results
-          path: reports/
+        run: npm audit --audit-level=high

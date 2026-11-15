@@ -15,10 +15,7 @@
             <p class="mt-6 text-white">Location</p>
             <p class="text-muted">Pretoria, South Africa</p>
 
-            <div class="mt-8 flex gap-3">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn-outline px-4 py-2 text-sm">LinkedIn</a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-outline px-4 py-2 text-sm">GitHub</a>
-            </div>
+            <a href="https://github.com/Larrayne" target="_blank" rel="noopener noreferrer" class="btn-outline mt-8 inline-flex px-4 py-2 text-sm">GitHub</a>
           </div>
         </div>
 
@@ -26,20 +23,20 @@
           <form class="flex flex-col gap-5" @submit.prevent="handleSubmit">
             <div>
               <label for="contact-name" class="block text-sm text-pink-100 mb-2">Name</label>
-              <input id="contact-name" v-model="form.name" type="text" class="input-field" placeholder="Your Name" />
+              <input id="contact-name" v-model="form.name" type="text" class="input-field" placeholder="Your Name" autocomplete="name" required />
             </div>
 
             <div>
               <label for="contact-email" class="block text-sm text-pink-100 mb-2">Email</label>
-              <input id="contact-email" v-model="form.email" type="email" class="input-field" placeholder="you@example.com" />
+              <input id="contact-email" v-model="form.email" type="email" class="input-field" placeholder="you@example.com" autocomplete="email" required />
             </div>
 
             <div>
               <label for="contact-message" class="block text-sm text-pink-100 mb-2">Message</label>
-              <textarea id="contact-message" v-model="form.message" class="input-field min-h-[140px]" placeholder="Tell me about your project"></textarea>
+              <textarea id="contact-message" v-model="form.message" class="input-field min-h-[140px]" placeholder="Tell me about your project" required></textarea>
             </div>
 
-            <button type="submit" class="btn-primary w-full">Send Message</button>
+            <button type="submit" class="btn-primary w-full">Prepare Email</button>
           </form>
         </div>
       </div>
@@ -48,6 +45,7 @@
     <div v-if="popup.visible" :class="['status-popup', popup.type]" role="status" aria-live="polite">
       <strong>{{ popup.title }}</strong>
       <span>{{ popup.message }}</span>
+      <a v-if="popup.emailDraftHref" :href="popup.emailDraftHref" class="underline">Open email draft</a>
     </div>
   </section>
 </template>
@@ -64,26 +62,28 @@ const form = reactive({
 const popup = reactive({
   visible: false,
   type: 'success',
-  title: 'Message sent',
-  message: 'Thanks! Your message is ready to go.'
+  title: '',
+  message: '',
+  emailDraftHref: ''
 })
 
 const handleSubmit = () => {
-  const isValid =
+  const isValid = Boolean(
     form.name.trim() &&
     form.email.trim() &&
     form.message.trim() &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())
+  )
 
-  popup.type = isValid ? 'success' : 'error'
-  popup.title = isValid ? 'Message sent' : 'Message not sent'
-  popup.message = isValid
-    ? 'Thanks! I will get back to you soon.'
-    : 'Please fill in your name, a valid email, and a short message.'
   popup.visible = true
+  popup.type = isValid ? 'success' : 'error'
+  popup.title = isValid ? 'Email draft ready' : 'Check your details'
+  popup.message = isValid
+    ? 'Your email app will open with this message. Review and send it there.'
+    : 'Please fill in your name, a valid email, and a short message.'
 
-  window.setTimeout(() => {
-    popup.visible = false
-  }, 2800)
+  popup.emailDraftHref = isValid
+    ? `mailto:lorrainerangolo@gmail.com?subject=${encodeURIComponent(`Portfolio enquiry from ${form.name.trim()}`)}&body=${encodeURIComponent(`${form.message.trim()}\n\nReply to: ${form.email.trim()}`)}`
+    : ''
 }
 </script>

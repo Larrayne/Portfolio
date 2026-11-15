@@ -25,11 +25,11 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-          cache-dependency-path: portfolio-site/package.json
+          cache-dependency-path: portfolio-site/package-lock.json
 
       - name: Install dependencies
         working-directory: portfolio-site
-        run: npm install
+        run: npm ci
 
       - name: Build
         working-directory: portfolio-site
