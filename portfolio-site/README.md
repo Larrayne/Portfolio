@@ -25,6 +25,8 @@ npm run build
 
 The production build is written to `dist/`. The Vite configuration uses `/Portfolio/` as the base path for production builds on GitHub Pages.
 
+Project cards include short, static code excerpts with links to the original files on GitHub. When a project's source changes, update the corresponding excerpt and file path in `src/pages/Projects.vue`.
+
 ## Deployment
 
 The GitHub Pages workflow builds and deploys this site when changes are pushed to the repository's `master` branch. It uses `npm ci` to install the versions recorded in `package-lock.json`.

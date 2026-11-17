@@ -1,9 +1,15 @@
 <template>
   <div class="min-h-screen">
-    <header class="navbar mx-6 mt-6 rounded-3xl">
+    <header class="navbar">
       <RouterLink to="/" class="brand" aria-label="Larrayne, home" @click="closeMenu">
-        <span class="brand-title">Larrayne<span class="brand-accent">.dev</span></span>
-        <span class="brand-subtitle">QA & software developer</span>
+        <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path class="brand-wings" d="M24 33C19 27 9 23 10 14c.5-5 5-6 9-2 2 2 4 5 5 9 1-4 3-7 5-9 4-4 8.5-3 9 2 1 9-9 13-14 19Z" stroke="currentColor" stroke-width="1.25" />
+          <path d="M20 14v20h10M17 37h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="brand-copy">
+          <span class="brand-title">Larrayne<span class="brand-accent">.dev</span></span>
+          <span class="brand-subtitle">QA & software developer</span>
+        </span>
       </RouterLink>
 
       <button
@@ -37,6 +43,19 @@
         </Transition>
       </RouterView>
     </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-kicker">Thoughtful by design <span aria-hidden="true">✦</span></p>
+        <p class="footer-brand">Larrayne<span>.dev</span></p>
+        <p class="footer-note">QA & software development · Pretoria, South Africa</p>
+      </div>
+      <div class="footer-links">
+        <RouterLink to="/projects">Explore my work</RouterLink>
+        <RouterLink to="/contact">Get in touch</RouterLink>
+        <a href="https://github.com/Larrayne" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </footer>
   </div>
 </template>
 

@@ -3,54 +3,101 @@
     <div class="page-container">
       <div class="hero-layout">
         <div class="hero-copy">
-          <div class="badge"><span class="availability-dot" aria-hidden="true"></span> QA & software developer</div>
-
-          <h1 class="title mt-6">Hi, I’m Larrayne.</h1>
-
+          <p class="hero-index"><span aria-hidden="true">✦</span> Portfolio / QA & software development</p>
+          <h1 class="title">Thoughtful <em>by design.</em></h1>
           <p class="hero-statement">
-            I build thoughtful digital experiences, bringing together clear interfaces and reliable code.
+            Hello, I’m Larrayne.
           </p>
           <p class="subtitle">
-            I work across frontend and backend, with Vue, C# and .NET. I care about the details that make software easier to use and maintain.
+            I bring a QA mindset to software development, creating thoughtful digital experiences and reliable code.
           </p>
+          <p class="hero-stack">Vue / C# / .NET / Testing / CI/CD</p>
 
           <div class="hero-actions">
-            <router-link to="/projects" class="btn-primary">View Projects</router-link>
-            <router-link to="/contact" class="btn-outline">Contact Me</router-link>
+            <router-link to="/projects" class="btn-primary">Explore my work <span aria-hidden="true">↗</span></router-link>
+            <router-link to="/contact" class="hero-text-link">Let’s connect <span aria-hidden="true">→</span></router-link>
           </div>
-
-          <p class="hero-location"><span aria-hidden="true">⌖</span> Pretoria, South Africa</p>
+          <p class="hero-location">Based in Pretoria, South Africa <span aria-hidden="true">✦</span></p>
         </div>
 
-        <div class="hero-visual">
-          <div class="hero-accent" aria-hidden="true"></div>
-          <div class="hero-visual-card">
-            <p class="hero-card-kicker">The toolkit</p>
-            <h2>Ideas to implementation.</h2>
-            <p class="text-muted">A few of the tools I use to build and test.</p>
-
-            <div class="tool-group">
-              <span class="tool-group-label">Frontend</span>
-              <div class="flex flex-wrap gap-2">
-                <span class="tag">Vue 3</span>
-                <span class="tag">Tailwind</span>
-                <span class="tag">Vite</span>
-              </div>
-            </div>
-
-            <div class="tool-group">
-              <span class="tool-group-label">Backend & workflow</span>
-              <div class="flex flex-wrap gap-2">
-                <span class="tag">C#</span>
-                <span class="tag">.NET</span>
-                <span class="tag">SQL</span>
-                <span class="tag">Docker</span>
-                <span class="tag">CI/CD</span>
-              </div>
-            </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-frame">
+            <div class="art-frame-top"><span>L / DEV</span><span>CREATIVE & TECHNICAL</span></div>
+            <div class="art-orbit art-orbit-one"></div>
+            <div class="art-orbit art-orbit-two"></div>
+            <span class="art-monogram">L<span>.</span></span>
+            <span class="art-star">✦</span>
+            <span class="art-star art-star-small">✧</span>
+            <div class="art-frame-bottom"><span>THE DETAILS MATTER</span><span>01 / 03</span></div>
           </div>
+          <span class="art-caption">A little creativity. A lot of intention.</span>
         </div>
       </div>
+
+      <div class="expertise-strip" aria-label="Areas of expertise">
+        <span>Quality assurance</span><span aria-hidden="true">✦</span>
+        <span>Software development</span><span aria-hidden="true">✦</span>
+        <span>Thoughtful experiences</span>
+      </div>
+
+      <section class="selected-work" aria-labelledby="selected-work-title">
+        <div class="selected-work-heading">
+          <div>
+            <p class="section-eyebrow">The work / A closer look</p>
+            <h2 id="selected-work-title">Made with <em>intention.</em></h2>
+          </div>
+          <router-link to="/projects" class="selected-work-link">All projects <span aria-hidden="true">↗</span></router-link>
+        </div>
+        <div class="work-preview-grid">
+          <router-link to="/projects" class="work-preview work-preview-portfolio">
+            <span class="work-number">01 / WEB & QUALITY</span>
+            <span class="work-art work-art-interface" aria-hidden="true"><span>L<span>.</span></span></span>
+            <span class="work-name">Portfolio Site <span aria-hidden="true">↗</span></span>
+            <span class="work-caption">Vue · Testing · CI/CD</span>
+          </router-link>
+          <router-link to="/projects" class="work-preview work-preview-api">
+            <span class="work-number">02 / BACKEND</span>
+            <span class="work-art work-art-api" aria-hidden="true"><span>{ }</span></span>
+            <span class="work-name">Waste Sorting App <span aria-hidden="true">↗</span></span>
+            <span class="work-caption">Java · Spring Boot · REST API</span>
+          </router-link>
+          <router-link to="/projects" class="work-preview work-preview-tools">
+            <span class="work-number">03 / DEVELOPER TOOLS</span>
+            <span class="work-art work-art-tools" aria-hidden="true"><span>_</span></span>
+            <span class="work-name">PC Setup Assistant <span aria-hidden="true">↗</span></span>
+            <span class="work-caption">Node.js · CLI · CI/CD</span>
+          </router-link>
+        </div>
+      </section>
+
+      <section class="mini-game glass" aria-labelledby="mini-game-title">
+        <div class="mini-game-copy">
+          <p class="section-eyebrow">Take a quick break</p>
+          <h2 id="mini-game-title">Guess my number</h2>
+          <p>I'm thinking of a number from 1 to 20. Can you find it?</p>
+        </div>
+        <form class="mini-game-form" @submit.prevent="checkGuess">
+          <label for="number-guess">Your guess</label>
+          <div class="mini-game-controls">
+            <input
+              id="number-guess"
+              v-model="guess"
+              type="number"
+              min="1"
+              max="20"
+              inputmode="numeric"
+              placeholder="1–20"
+              :disabled="gameWon"
+              aria-describedby="game-feedback"
+            />
+            <button type="submit" class="btn-primary" :disabled="gameWon">Guess</button>
+            <button v-if="gameWon" type="button" class="btn-outline" @click="startNewGame">Play again</button>
+          </div>
+          <p id="game-feedback" class="game-feedback" :class="{ 'game-feedback-won': gameWon }" aria-live="polite">
+            {{ gameMessage }}
+          </p>
+        </form>
+      </section>
 
       <div class="home-features">
         <div class="home-section-heading">
@@ -69,17 +116,57 @@
           <div class="feature-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg>
           </div>
-          <h3>Careful testing</h3>
-          <p>Testing and iteration to help make changes dependable.</p>
+          <h3>Quality by design</h3>
+          <p>A QA mindset, automated tests and iteration to help make changes dependable.</p>
         </div>
         <div class="feature-card text-left">
           <div class="feature-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
           </div>
-          <h3>Maintainable code</h3>
-          <p>Reusable patterns and a considered approach from frontend through backend.</p>
+          <h3>Engineering, end to end</h3>
+          <p>From reusable interfaces to REST APIs and maintainable backend code.</p>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const makeTarget = () => Math.floor(Math.random() * 20) + 1
+
+const guess = ref('')
+const attempts = ref(0)
+const targetNumber = ref(makeTarget())
+const gameWon = ref(false)
+const gameMessage = ref('Pick a number from 1 to 20.')
+
+const checkGuess = () => {
+  const value = Number(guess.value)
+
+  if (!Number.isInteger(value) || value < 1 || value > 20) {
+    gameMessage.value = 'Enter a whole number from 1 to 20.'
+    return
+  }
+
+  attempts.value += 1
+
+  if (value === targetNumber.value) {
+    gameWon.value = true
+    gameMessage.value = `You got it in ${attempts.value} ${attempts.value === 1 ? 'guess' : 'guesses'}! Nice one.`
+  } else {
+    gameMessage.value = value < targetNumber.value ? 'A little higher! Try again.' : 'A little lower! Try again.'
+  }
+
+  guess.value = ''
+}
+
+const startNewGame = () => {
+  targetNumber.value = makeTarget()
+  guess.value = ''
+  attempts.value = 0
+  gameWon.value = false
+  gameMessage.value = 'Pick a number from 1 to 20.'
+}
+</script>
