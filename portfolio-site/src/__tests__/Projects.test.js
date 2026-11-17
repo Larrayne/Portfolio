@@ -19,7 +19,7 @@ describe('Projects.vue', () => {
     const wrapper = mountProjects()
     const cards = wrapper.findAll('.project-card')
 
-    expect(cards).toHaveLength(8)
+    expect(cards).toHaveLength(15)
     expect(cards[0].text()).toContain('Portfolio website')
     expect(cards[0].get('.project-link').text()).toContain('View source')
     expect(wrapper.findAll('.project-link-live')).toHaveLength(0)
@@ -30,7 +30,7 @@ describe('Projects.vue', () => {
     const wrapper = mountProjects()
     const cards = wrapper.findAll('.project-card')
 
-    expect(wrapper.findAll('.code-preview')).toHaveLength(8)
+    expect(wrapper.findAll('.code-preview')).toHaveLength(15)
     for (const card of cards) {
       expect(card.get('summary').text()).toContain('Peek at the code')
       expect(card.get('pre code').text().length).toBeGreaterThan(0)
@@ -40,6 +40,15 @@ describe('Projects.vue', () => {
     expect(cards[0].get('pre code').text()).toContain("name: 'projects'")
     expect(cards[3].get('pre code').text()).toContain('@PostMapping')
     expect(cards[3].get('.code-source-link').attributes('href')).toContain('WasteManagementController.java')
+    expect(cards.map((card) => card.text())).toEqual(expect.arrayContaining([
+      expect.stringContaining('CareerGPS'),
+      expect.stringContaining('With Love, Always'),
+      expect.stringContaining('Waste Management Assessment'),
+      expect.stringContaining('Our Little Universe'),
+      expect.stringContaining('Digital Scrapbook'),
+      expect.stringContaining('HerGuard'),
+      expect.stringContaining('ChatBotAi'),
+    ]))
   })
 
   it('filters projects by category and search query', async () => {

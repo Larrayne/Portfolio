@@ -164,6 +164,130 @@ const projects = [
     },
     live: null,
   },
+  {
+    title: 'CareerGPS',
+    type: 'Career guidance platform',
+    category: 'Web apps',
+    description: 'An AI-powered career guidance platform for exploring career paths and building a clearer direction from your experience and skills.',
+    tags: ['Next.js', 'React', 'TypeScript', 'PDF.js', 'Career tools'],
+    github: 'https://github.com/Larrayne/CareerGPS',
+    code: {
+      path: 'app/page.tsx',
+      language: 'TypeScript',
+      excerpt: `const [profile, setProfile] = useState(() => analyzeProfile(sampleCv));
+const [selectedDestination, setSelectedDestination] = useState("I don't know yet");`,
+    },
+    live: null,
+  },
+  {
+    title: 'With Love, Always',
+    type: 'Candle gift website',
+    category: 'Web apps',
+    description: 'A front-end candle and gift storefront concept with product browsing and personalised gift options. The enquiry form is a prototype; payment is not enabled.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Responsive design'],
+    github: 'https://github.com/Larrayne/With_Love.Always',
+    code: {
+      path: 'index.html',
+      language: 'HTML',
+      excerpt: `<section class="hero" id="home">
+  <div class="hero-copy">
+    <h1>A little light.<br><em>A lot of love.</em></h1>
+  </div>
+</section>`,
+    },
+    live: null,
+  },
+  {
+    title: 'Waste Management Assessment',
+    type: 'Spring Boot API',
+    category: 'APIs',
+    description: 'A Java REST API for managing waste categories, disposal guidance, and recycling tips, with CRUD operations and input validation.',
+    tags: ['Java', 'Spring Boot', 'REST API', 'Validation'],
+    github: 'https://github.com/Larrayne/com.enviro.assessment.grad001.LarrayneRangolo',
+    code: {
+      path: 'com.enviro.assessment.grad001.LarrayneRangolo/waste_management/src/main/java/com/enviro365/waste_management/controller/WasteManagementController.java',
+      language: 'Java',
+      excerpt: `@PostMapping
+public ResponseEntity<WasteCategory> createWasteCategory(@Validated @RequestBody WasteCategory category) {
+    WasteCategory createdCategory = service.save(category);
+    return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
+}`,
+    },
+    live: null,
+  },
+  {
+    title: 'Our Little Universe',
+    type: 'Interactive experience',
+    category: 'Web apps',
+    description: 'A playful, heart-themed interactive website that welcomes visitors into a sequence of questions and responses.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Interactive'],
+    github: 'https://github.com/Larrayne/our_little_universe',
+    code: {
+      path: 'index.html',
+      language: 'HTML',
+      excerpt: `<main class="welcome" id="welcomeScreen">
+  <h1>Welcome to our little universe 💜</h1>
+  <button class="heart-button" id="heartButton">❤️</button>
+</main>`,
+    },
+    live: null,
+  },
+  {
+    title: 'Digital Scrapbook',
+    type: 'Memory book website',
+    category: 'Web apps',
+    description: 'A scrapbook-style interactive memory book with a photo cover and pages for collecting shared memories.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Web design'],
+    github: 'https://github.com/Larrayne/digital_scrapbook',
+    code: {
+      path: 'index.html',
+      language: 'HTML',
+      excerpt: `<section class="cover">
+  <p class="small-title">A LITTLE BOOK OF</p>
+  <h1>Our<br>Memories</h1>
+  <button id="openBook">Open Our Book 📖</button>
+</section>`,
+    },
+    live: null,
+  },
+  {
+    title: 'HerGuard',
+    type: 'Personal safety app',
+    category: 'Web apps',
+    description: 'A personal safety app concept with safe route planning, real-time alerts, community reporting, and emergency contacts.',
+    tags: ['React', 'Firebase', 'Maps', 'Personal safety'],
+    github: 'https://github.com/Larrayne/HerGuard',
+    code: {
+      path: 'Frontend/src/Home.js',
+      language: 'JavaScript',
+      excerpt: `<ul>
+  <li>Safe Route Planning</li>
+  <li>Real-Time Alerts</li>
+  <li>Community Reporting</li>
+  <li>Emergency Contacts</li>
+</ul>`,
+    },
+    live: null,
+  },
+  {
+    title: 'ChatBotAi',
+    type: 'AI chat prototype',
+    category: 'Web apps',
+    description: 'A small Flask chat application with a browser interface and an OpenAI-powered response endpoint.',
+    tags: ['Python', 'Flask', 'OpenAI', 'REST API'],
+    github: 'https://github.com/Larrayne/ChatBotAi',
+    code: {
+      path: 'app.py',
+      language: 'Python',
+      excerpt: `@app.route('/api', methods=['POST'])
+def chat():
+    data = request.json
+    message = data.get('message')
+    if not message:
+        return jsonify({'error': 'No message provided'}), 400`,
+    },
+    live: null,
+  },
 ]
 
 const categories = ['All projects', 'Web apps', 'Developer tools', 'APIs', 'Games']
@@ -207,7 +331,7 @@ const chooseSurprise = () => {
       <div class="glass project-intro p-10">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p class="section-eyebrow">Selected work / 01—08</p>
+            <p class="section-eyebrow">Selected work / 01—15</p>
             <h1 class="title">Projects</h1>
             <p class="subtitle">A closer look at the interfaces, APIs, automated tests, and experiments behind the work. Find a favorite or let curiosity choose.</p>
           </div>
